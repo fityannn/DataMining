@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <title>Aplikasi Prediksi Data</title>
+    </head>
+    <body
+        class="
+            flex flex-col
+            justify-between
+            item-center
+            p-8
+            min-h-screen
+            bg-gradient-to-r
+            from-green-400
+            to-blue-500
+            text-gray-800
+            md:flex-row
+        "
+    >
+        <main class="bg-white p-16 rounded-lg">
+            <h1 class="text-3xl font-bold mb-8">
+                Prediksi Penjualan Bulan Berikutnya
+            </h1>
+
+            <form
+                action="{{ url_for('predict') }}"
+                method="post"
+                class="flex flex-col"
+            >
+                 <label for="Apotek" class="Apotek">Apotek</label>
+                <input
+                    type="Apotek"
+                    name="Apotek"
+                    placeholder="Apotek"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="Jan" class="Jan">Januari</label>
+                <input
+                    type="Jan"
+                    name="Jan"
+                    placeholder="Januari"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="Feb" class="Feb">Februari</label>
+                <input
+                    type="Feb"
+                    name="Feb"
+                    placeholder="Februari"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="Mar" class="Mar">Maret</label>
+                <input
+                    type="Mar"
+                    name="Mar"
+                    placeholder="Maret"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <button
+                    type="submit"
+                    class="
+                        flex
+                        justify-center
+                        align-center
+                        mt-8
+                        p-4
+                        bg-gradient-to-r
+                        from-green-400
+                        to-blue-500
+                        text-white
+                        rounded-md
+                    "
+                    >
+                    PREDIKSI SEKARANG
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-arrow-right ml-4"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+
+
+        </main>
+        <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+            <div class="bg-white p-16 rounded-lg">
+                <h1 class="text-2xl mb-8">
+                    Hasil Prediksi adalah
+                </h1>
+                <h2 class="text-2xl font-bold"> Prediksi {{ Apotek }}</h2>
+                {% if (Apotek) != 0 %}
+                <div class="mt-8">
+                    <p>Data Apotek     : {{ Apotek }} </p>
+                    <p>Data Jan        : {{ Jan }}</p>
+                    <p>Data Feb        : {{ Feb }}</p>
+                    <p>Data Mar        : {{ Mar }}</p>
+                    <p>Grand Total     : {{ Total }}</p>
+                    <p>Prediksi        : {{ mean }}</p>
+                </div>
+
+                {% endif %}
+            </div>
+            <div class="flex justify-around bg-white p-16 rounded-lg mt-8">
+                <img
+                    class="h-24 md:h-28"
+                    src="https://upload.wikimedia.org/wikipedia/id/4/4c/Logo_unikom_baru.jpg"
+                    alt="logo-unikom"
+                />
+            </div>
+        </section>
+    </body>
+</html>
